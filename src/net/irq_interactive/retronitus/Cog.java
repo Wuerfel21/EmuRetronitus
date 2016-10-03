@@ -514,7 +514,7 @@ public class Cog {
 				long add = result + source;
 				int dold = result;
 				result = (int) (add & -1);
-				newc = ((source ^ dold)&0x80000000) == 0 & ((source ^ result)&0x80000000) != 0;
+				newc = ((source ^ dold)&0x80000000) == 0 && ((source ^ result)&0x80000000) != 0;
 				newz = result == 0;
 				pc++;
 				break;
@@ -532,7 +532,7 @@ public class Cog {
 				long add = source + result + (c ? 1 : 0);
 				int dold = result;
 				result = (int) (add & -1);
-				newc = ((source ^ dold)&0x80000000) == 0 & ((source ^ result)&0x80000000) != 0;
+				newc = ((source ^ dold)&0x80000000) == 0 && ((source ^ result)&0x80000000) != 0;
 				newz = result == 0 && z;
 				pc++;
 				break;
@@ -543,7 +543,7 @@ public class Cog {
 				int dold = result;
 				result = (int) (sub & -1);
 				newz = result == 0 && z;
-				newc = ((~s & dold & ~result) | (s & ~dold & result)) < 0;
+				newc = ((source ^ dold)&0x80000000) != 0 && ((source ^ result)&0x80000000) != 0;
 				pc++;
 				break;
 			}
